@@ -1,0 +1,15 @@
+# Terraform state & cache
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# IDE/editor stuff
+.vscode/
+.idea/
+
+# AWS credentials (never commit these)
+*.pem
+*.key
+
+# Logs and misc
+*.log
