@@ -19,7 +19,7 @@ sudo chown minecraft:minecraft /opt/minecraft/server
 cd /opt/minecraft/server
 
 # Download Minecraft server jar
-sudo -u minecraft curl -o server.jar https://launcher.mojang.com/v1/objects/3e7fbe9c404c4fa2dc6fba1c6fd8e0338c388c89/server.jar
+sudo -u minecraft curl -o minecraft_server.1.21.5.jar https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar
 
 # Accept EULA
 echo "eula=true" | sudo tee /opt/minecraft/server/eula.txt
@@ -35,7 +35,7 @@ After=network.target
 User=minecraft
 Nice=1
 WorkingDirectory=/opt/minecraft/server
-ExecStart=/usr/bin/java -Xmx1G -jar server.jar nogui
+ExecStart=/usr/bin/java -Xmx1G -jar minecraft_server.1.21.5.jar nogui
 StandardOutput=append:/var/log/minecraft.log
 StandardError=append:/var/log/minecraft.err
 Restart=on-failure
