@@ -1,13 +1,13 @@
-resource "aws_instance" "minecraft_server" {
+resource "aws_instance" "minecraft" {
   ami = data.aws_ami.amazon_linux.id
   instance_type = "t3.micro"
   key_name = var.key_name
   subnet_id = var.subnet_id
-  vpc_security_group_ids = [aws_security_group.minecraft_sg.id]
+  vpc_security_group_ids = [aws_security_group.minecraft.id]
   associate_public_ip_address = true
 }
 
-resource "aws_security_group" "minecraft-sg" {
+resource "aws_security_group" "minecraft" {
   name = "minecraft-sg"
   description = "Allows SSH and Minecraft traffic"
   vpc_id = var.vpc_id
