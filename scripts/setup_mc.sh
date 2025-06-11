@@ -11,7 +11,7 @@ JAVA_PATH=$(readlink -f $(which java))
 echo "Java installed at: $JAVA_PATH"
 
 # Create a minecraft user
-sudo useradd -m -r -d /opt/minecraft minecraft
+id minecraft &>/dev/null || sudo useradd -m -r -d /opt/minecraft minecraft
 
 # Create server directory
 sudo mkdir -p /opt/minecraft/server
