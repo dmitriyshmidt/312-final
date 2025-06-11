@@ -18,3 +18,8 @@ variable "subnet_id" {
   description = "The ID of the subnet to launch the instance into"
   type = string
 }
+
+variable "private_key_path" {
+  description = "Path to your private key file"
+  type = string
+}
