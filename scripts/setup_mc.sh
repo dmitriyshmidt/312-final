@@ -1,9 +1,14 @@
 #!/bin/bash
 
+set -e
+
 # Update packages and install Java
 sudo yum update -y
-sudo amazon-linux-extras enable corretto8
 sudo yum install -y java-1.8.0-amazon-corretto
+
+# Ensure java is in the expected location
+JAVA_PATH=$(readlink -f $(which java))
+echo "Java installed at: $JAVA_PATH"
 
 # Create a minecraft user
 sudo useradd -m -r -d /opt/minecraft minecraft
