@@ -1,0 +1,5 @@
+aws_region = "us-east-1"
+key_name = "your-key-name"
+vpc_id = "vpc-xxxxxxxx"
+subnet_id = "subnet-yyyyyyyy"
+private_key_path = "/path/to/your/key.pem"
