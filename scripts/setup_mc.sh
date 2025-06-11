@@ -25,6 +25,7 @@ sudo -u minecraft curl -o server.jar https://launcher.mojang.com/v1/objects/3e7f
 echo "eula=true" | sudo tee /opt/minecraft/server/eula.txt
 
 # Create a systemd service
+JAVA_PATH=$(command -v java)
 sudo tee /etc/systemd/system/minecraft.service > /dev/null <<EOL
 [Unit]
 Description=Minecraft Server
@@ -50,5 +51,6 @@ sudo systemctl enable minecraft
 sudo systemctl start minecraft
 
 # Disable firewalld or open port 25565 (if active)
-sudo systemctl stop firewalld || true
-sudo systemctl disable firewalld || true
+sudo firewall-cmd --permanent --add-port=25565/tcp || true
+sudo firewall-cmd --reload || true
+
