@@ -17,7 +17,7 @@ cd /opt/minecraft/server
 sudo -u minecraft curl -o server.jar https://launcher.mojang.com/v1/objects/3e7fbe9c404c4fa2dc6fba1c6fd8e0338c388c89/server.jar
 
 # Accept EULA
-echo "eula=true" | sudo tee /opt/minecraft/server/euala.txt
+echo "eula=true" | sudo tee /opt/minecraft/server/eula.txt
 
 # Create a systemd service
 sudo tee /etc/systemd/system/minecraft.service > /dev/null <<EOL
