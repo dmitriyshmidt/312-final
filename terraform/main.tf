@@ -8,7 +8,9 @@ resource "aws_instance" "minecraft" {
 }
 
 resource "null_resource" "provision_minecraft" {
-  depends_on = [aws_instance.minecraft]
+  depends_on = [aws_instance.minecraft,
+  aws_security_group.minecraft
+]
 
   connection {
     type = "ssh"
