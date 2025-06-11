@@ -30,6 +30,8 @@ User=minecraft
 Nice=1
 WorkingDirectory=/opt/minecraft/server
 ExecStart=/usr/bin/java -Xmx1G -jar server.jar nogui
+StandardOutput=append:/var/log/minecraft.log
+StandardError=append:/var/log/minecraft.err
 Restart=on-failure
 
 [Install]
@@ -41,3 +43,7 @@ sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable minecraft
 sudo systemctl start minecraft
+
+# Disable firewalld or open port 25565 (if active)
+sudo systemctl stop firewalld || true
+sudo systemctl disable firewalld || true
