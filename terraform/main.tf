@@ -19,13 +19,13 @@ resource "null_resource" "provision_minecraft" {
 
   provisioner "file" {
     source = "${path.module}/scripts/setup-mc.sh"
-    destination = "/home/ec2-user/setup-mc.sh"
+    destination = "/home/ec2-user/setup_mc.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/ec2-user/setup-mc.sh",
-      "sudo /home/ec2-user/setup-mc.sh"
+      "sudo /home/ec2-user/setup_mc.sh"
     ]
   }
 }
