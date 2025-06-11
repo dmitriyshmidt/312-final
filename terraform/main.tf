@@ -18,7 +18,7 @@ resource "null_resource" "provision_minecraft" {
   }
 
   provisioner "file" {
-    source = "${path.module}/scripts/setup_mc.sh"
+    source = "${path.module}/../scripts/setup_mc.sh"
     destination = "/home/ec2-user/setup_mc.sh"
   }
 
