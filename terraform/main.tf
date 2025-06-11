@@ -5,10 +5,6 @@ resource "aws_instance" "minecraft_server" {
   subnet_id = var.subnet_id
   vpc_security_group_ids = [aws_security_group.minecraft_sg.id]
   associate_public_ip_address = true
-
-  tags = {
-    Name = "minecraft-server-final"
-  }
 }
 
 resource "aws_security_group" "minecraft-sg" {
@@ -29,7 +25,7 @@ resource "aws_security_group" "minecraft-sg" {
     from_port = 22
     to_port = 22
     protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -37,7 +33,11 @@ resource "aws_security_group" "minecraft-sg" {
     from_port = 0
     to_port = 0
     protocol = "-1"
-    cidr_blocks = ["0.0.0.0/0]
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags {
+    Name = "minecraft-sg"
   }
 }
 
@@ -62,6 +62,6 @@ data "aws_ami" "amazon_linux" {
 
   filter {
     name = "virtualization-type"
-    values = ["hvm"}
+    values = ["hvm"]
   }
 }
