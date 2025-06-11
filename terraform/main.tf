@@ -5,11 +5,21 @@ resource "aws_instance" "minecraft" {
   subnet_id = var.subnet_id
   vpc_security_group_ids = [aws_security_group.minecraft.id]
   associate_public_ip_address = true
+
+  root_block_device {
+    volume_size = 16  # Increase root volume size to 16 GB
+    volume_type = "gp2"
+  }
+
+  tags = {
+    Name = "minecraft-server"
+  }
 }
 
 resource "null_resource" "provision_minecraft" {
-  depends_on = [aws_instance.minecraft,
-  aws_security_group.minecraft
+  depends_on = [
+    aws_instance.minecraft,
+    aws_security_group.minecraft
 ]
 
   connection {
