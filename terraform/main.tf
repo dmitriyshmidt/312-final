@@ -7,6 +7,29 @@ resource "aws_instance" "minecraft" {
   associate_public_ip_address = true
 }
 
+resource "null_resource" "provision_minecraft" {
+  depends_on = [aws_instance.minecraft]
+
+  connection {
+    type = "ssh"
+    user = "ec2-user"
+    private_key = file(var.private_key_path)
+    host = aws_instance.minecraft.public_ip
+  }
+
+  provisioner "file" {
+    source = "${path.module}/scripts/setup-mc.sh"
+    destination = "/home/ec2-user/setup-mc.sh"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ec2-user/setup-mc.sh",
+      "sudo /home/ec2-user/setup-mc.sh"
+    ]
+  }
+}
+
 resource "aws_security_group" "minecraft" {
   name = "minecraft-sg"
   description = "Allows SSH and Minecraft traffic"
