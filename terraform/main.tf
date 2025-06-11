@@ -7,7 +7,7 @@ resource "aws_instance" "minecraft" {
   associate_public_ip_address = true
 
   root_block_device {
-    volume_size = 16  # Increase root volume size to 16 GB
+    volume_size = 16 
     volume_type = "gp2"
   }
 
@@ -78,7 +78,7 @@ resource "aws_security_group" "minecraft" {
 
 data "aws_ami" "amazon_linux" {
   most_recent = true
-  owners = ["137112412989"] # Official Amazon Linux AMI publisher
+  owners = ["137112412989"]
 
   filter {
     name = "name"
